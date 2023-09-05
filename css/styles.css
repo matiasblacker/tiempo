@@ -5,6 +5,9 @@ html {
     
 }
 
+form input[type="submit"]{
+  background-color: coral;
+}
 
 .sk-fading-circle {
     margin: 100px auto;
@@ -141,3 +144,5 @@ html {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; } 
   }
+
+  
