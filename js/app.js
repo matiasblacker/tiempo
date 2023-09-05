@@ -51,7 +51,7 @@ function consultarAPI(ciudad, pais ) {
 
     // leer la url  y agregar el API key
     const appId = 'bc357b9c9ea75c9773cd93f76db52914';
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}&lang=es&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}&lang=es&units=metric`;
 
     Spinner();
 
