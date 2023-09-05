@@ -7,6 +7,7 @@ html {
 
 form input[type="submit"]{
   background-color: coral;
+  padding: 1rem;
 }
 @media screen and (max-width: 767px) {
   .container {
