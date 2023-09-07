@@ -7,20 +7,14 @@ window.addEventListener('load', () => {
     formulario.addEventListener('submit', buscarClima);
 })
 
-
-
-
 function buscarClima(e) {
     e.preventDefault();
     const ciudad = document.querySelector('#ciudad').value
     const pais = document.querySelector('#pais').value
 
-    console.log(ciudad);
-    console.log(pais);
-
     if(ciudad === '' || pais === '') {
         // Hubo un error
-        mostrarError('Ambos campos son obligatorios')
+        mostrarError('ingrese una ciudad o comuna')
 
         return;
     }
@@ -32,24 +26,23 @@ function mostrarError(mensaje) {
   if(!alerta) {
       const alerta = document.createElement('div');
 
-      alerta.classList.add('bg-red-100', "border-red-400", "text-red-700", "px-4", "py-3", "rounded", "relative", "max-w-md", "mx-auto", "mt-6", "text-center" );
+      alerta.classList.add('bg-red-100', 'border-red-400', 'text-red-700', 'px-4', 'py-4', 'rounded', 'relative', 'max-w-lg', 'mx-auto', 'mt-6', 'text-center', 'alert');
 
       alerta.innerHTML = `
-          <strong class="font-bold">Error!</strong>
+          <strong class="font-bold"><i class="fa-solid fa-circle-exclamation fa-beat" style="color: #ff0000;"></i></strong>
           <span class="block sm:inline">${mensaje}</span>
       `;
 
       container.appendChild(alerta);
       setTimeout(() => {
           alerta.remove();
-      }, 3000);
+      }, 5000);
   }
 }
 
 function consultarAPI(ciudad, pais ) {
-        // Consultar la API e imprimir el Resultado...
-
-    // leer la url  y agregar el API key
+    // Consultar la API e imprimir el Resultado...
+    // lee la url  y agregar el API key
     const appId = 'bc357b9c9ea75c9773cd93f76db52914';
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}&lang=es&units=metric`;
 
@@ -61,7 +54,7 @@ function consultarAPI(ciudad, pais ) {
         return respuesta.json();
       })
       .then(datos => {
-        console.log(datos);
+        /* console.log(datos); */
         limpiarHTML();
         if(datos.cod === "404") {
           mostrarError('Ciudad No Encontrada')
@@ -70,7 +63,7 @@ function consultarAPI(ciudad, pais ) {
         }
       })
       .catch(error => {
-        console.log(error)
+        /* console.log(error) */
       });
 }
 
@@ -80,10 +73,10 @@ function mostrarClima(datos) {
 
   const { name, main: { temp, temp_max, temp_min, humidity }, weather:[arr] } = datos;
 
-  console.log(name);
+  /* console.log(name);
   console.log(temp);
   console.log(temp_max);
-  console.log(temp_min);
+  console.log(temp_min); */
 
   const grados = (temp);
   const min = (temp_max);
@@ -130,10 +123,8 @@ function mostrarClima(datos) {
   resultadoDiv.appendChild(tempMinima);
   resultadoDiv.appendChild(humedadAmbiente);
 
-
   resultado.appendChild(resultadoDiv)
 }
-
 
 function limpiarHTML() {
   while(resultado.firstChild) {
